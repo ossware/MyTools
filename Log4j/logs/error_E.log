@@ -1,0 +1,2 @@
+2013-04-19 01:09:21  [com.iunet.log4j.Log4jApp.printLog(Log4jApp.java:34):com.iunet.log4j.Log4jApp:main:3] - [ERROR]  log4j error
+2013-04-19 01:09:21  [com.iunet.log4j.Log4jApp.printLog(Log4jApp.java:36):com.iunet.log4j.Log4jApp:main:4] - [FATAL]  log4j fatal
