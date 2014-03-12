@@ -1,5 +1,6 @@
 package com.ehome.thread;
 
+import com.ehome.model.DataModel;
 import com.ehome.util.DruidUtil;
 import org.apache.commons.dbutils.DbUtils;
 
@@ -23,47 +24,13 @@ import java.util.List;
 public class ProcessDataThread implements Runnable {
     Connection conn = null;
     private String operateType;         // 操作类型
-    private int start = 0;              // 起始记录
-    private int pageSize = 0;           // 页大小
+    private long start = 0;              // 起始记录
+    private int pageSize = 0;           // 页数据量
     private int processSize = 0;        // 一次批量处理多少数据
 
     // 处理数据
     public void run() {
-        if (operateType.equals("insert")) {
-            insertData();
-        } else {
-            queryData(start, pageSize);
-        }
-    }
-
-    /**
-     * 批量把一页数据插入数据库
-     */
-    public void insertData() {
-        PreparedStatement ps = null;
-        try {
-            conn = DruidUtil.getConnection();
-            conn.setAutoCommit(false);
-            String sql = "insert into user(name, type) values(?, ?)";
-            ps = conn.prepareStatement(sql);
-            for (int i = 1; i <= processSize; i++) {
-                ps.setString(1, "单车上的理想_" + Thread.currentThread().getName());
-                ps.setString(2, "线程_" + Thread.currentThread().getName());
-                ps.addBatch();
-            }
-            ps.executeBatch();
-            conn.commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            try {
-                DbUtils.rollback(conn);
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
-        } finally {
-            DbUtils.closeQuietly(ps);   // 关闭prepareStatement
-            DbUtils.closeQuietly(conn); // 关闭数据库连接
-        }
+        processData(start, pageSize);
     }
 
     /**
@@ -72,19 +39,37 @@ public class ProcessDataThread implements Runnable {
      * @param start
      * @param pageSize
      */
-    public void queryData(int start, int pageSize) {
-        List<Object> dataList = new ArrayList<Object>();
+    private void processData(long start, int pageSize) {
+        List<DataModel> dataList = new ArrayList<DataModel>();
         PreparedStatement ps = null;
         try {
             conn = DruidUtil.getConnection();
-            String sql = "select id from user limit ?,?";
+            String sql = "select id, name, type from user limit ?,?";
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, start);
+            ps.setLong(1, start);
             ps.setInt(2, pageSize);
             ResultSet rs = ps.executeQuery();
+
+            DataModel dm;
             while (rs.next()) {
-                dataList.add(rs.getInt("id"));
+                dm = new DataModel();
+                dm.setId(rs.getInt("id"));
+                dm.setName(rs.getString("name"));
+                dm.setType(rs.getString("type"));
+                dataList.add(dm);
+//                System.out.println(dm.getId());
             }
+
+            conn.setAutoCommit(false);
+            String insertSQL = "insert into u1(name, type) values(?, ?) ";
+            ps = conn.prepareStatement(insertSQL);
+            for (DataModel data : dataList) {
+                ps.setString(1, data.getName());
+                ps.setString(2, data.getType());
+                ps.addBatch();
+            }
+            ps.executeBatch();
+            conn.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -92,10 +77,6 @@ public class ProcessDataThread implements Runnable {
             DbUtils.closeQuietly(conn); // 关闭数据库连接
         }
 
-        //////////////////////////////
-        for (Object obj : dataList) {
-            System.out.println(Thread.currentThread().getName() + ", id：" + obj);
-        }
     }
 
 
@@ -108,11 +89,11 @@ public class ProcessDataThread implements Runnable {
         this.operateType = operateType;
     }
 
-    public int getStart() {
+    public long getStart() {
         return start;
     }
 
-    public void setStart(int start) {
+    public void setStart(long start) {
         this.start = start;
     }
 

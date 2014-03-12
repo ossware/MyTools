@@ -58,6 +58,41 @@ public class ProcessDataCallable implements Callable {
     }
 
     /**
+     * 线程分页查询数据
+     *
+     * @param start
+     * @param pageSize
+     *
+     * @return
+     */
+    public List<Object> queryData(long start, long pageSize) {
+        List<Object> dataList = new ArrayList<Object>();
+        PreparedStatement ps = null;
+        try {
+            conn = DruidUtil.getConnection();
+            String sql = "select id from user limit ?,?";
+            ps = conn.prepareStatement(sql);
+            ps.setLong(1, start);
+            ps.setLong(2, pageSize);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                dataList.add(rs.getInt("id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DbUtils.closeQuietly(ps);   // 关闭prepareStatement
+            DbUtils.closeQuietly(conn); // 关闭数据库连接
+        }
+
+//        for(Object obj : dataList) {
+//            System.out.println(Thread.currentThread().getName() + ", id：" + obj);
+//        }
+
+        return dataList;
+    }
+
+    /**
      * 批量把一页数据插入数据库
      *
      * @return
@@ -91,41 +126,6 @@ public class ProcessDataCallable implements Callable {
         }
 
         return insertResult;
-    }
-
-    /**
-     * 线程分页查询数据
-     *
-     * @param start
-     * @param pageSize
-     *
-     * @return
-     */
-    public List<Object> queryData(long start, long pageSize) {
-        List<Object> dataList = new ArrayList<Object>();
-        PreparedStatement ps = null;
-        try {
-            conn = DruidUtil.getConnection();
-            String sql = "select id from user limit ?,?";
-            ps = conn.prepareStatement(sql);
-            ps.setLong(1, start);
-            ps.setLong(2, pageSize);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                dataList.add(rs.getInt("id"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            DbUtils.closeQuietly(ps);   // 关闭prepareStatement
-            DbUtils.closeQuietly(conn); // 关闭数据库连接
-        }
-
-//        for(Object obj : dataList) {
-//            System.out.println(Thread.currentThread().getName() + ", id：" + obj);
-//        }
-
-        return dataList;
     }
 
 

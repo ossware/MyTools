@@ -1,6 +1,7 @@
 package com.ehome.thread;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -17,21 +18,29 @@ import java.util.concurrent.*;
 public class MyCallable {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
+        List dataList = queryData();
+        for (Object s : dataList) {
+            System.out.println("返回的结果：id=" + s);
+        }
+    }
+
+    private static List queryData() throws ExecutionException, InterruptedException {
         long startTime = System.currentTimeMillis();
-        long total = 260000;
-        int pageSize = 2;
-        int taskSize = 4;
-        long batchNum = countBatchNum(total, pageSize * taskSize);  // 要分多少批处理完数据
-        System.out.println(batchNum);
-        int t = 0;
+        long total = 30;
+        int eachThreadProcessCnt = 10;  // 每个线程处理的数据量
+        long threadCnt = 2;              // 总共有几个线程
+        Long batchCnt = countBatchNum(total, threadCnt * eachThreadProcessCnt); // 总共的数据量需要用几批线程来处理
+
         List<Future<List<Object>>> list = new ArrayList<Future<List<Object>>>();
-        for (int b = 0; b < batchNum; b++) {
-            // 创建一个线程池
-            ExecutorService pool = Executors.newFixedThreadPool(taskSize);
+
+        int t = 0;
+        batchCnt = countBatchNum(total, (long) eachThreadProcessCnt);  // 总数据量需要用多少个线程
+        for (long b = 1; b <= batchCnt; b++) {
+            ExecutorService pool = Executors.newFixedThreadPool((int) threadCnt);
             // 创建多个有返回值的任务
-            for (long i = 0; i < taskSize; i++) {
-//                Callable<List<Object>> c = new ProcessDataCallable("insert", 0, 0, 10000);    // 批量插入数据
-                Callable<List<Object>> c = new ProcessDataCallable("query", (t * pageSize), pageSize, 0);     // 查询数据
+            for (long i = 1; i <= threadCnt; i++) {
+                if (b == batchCnt && i == threadCnt) eachThreadProcessCnt = 0;
+                Callable<List<Object>> c = new ProcessDataCallable("query", (t * eachThreadProcessCnt), eachThreadProcessCnt, 0);     // 查询数据
                 // 执行任务并获取Future对象
                 Future<List<Object>> f = pool.submit(c);
                 list.add(f);
@@ -40,33 +49,58 @@ public class MyCallable {
             // 关闭线程池
             pool.shutdown();
         }
+
+
+
+
+
+
+
+
+
+
+//        for (long b = 1; b <= batchCnt; b++) {
+//            ExecutorService pool = Executors.newFixedThreadPool(threadCnt);
+//            // 创建多个有返回值的任务
+//            for (long i = 1; i <= threadCnt; i++) {
+//                Callable<List<Object>> c = new ProcessDataCallable("query", (t * eachThreadProcessCnt), eachThreadProcessCnt, 0);     // 查询数据
+//                // 执行任务并获取Future对象
+//                Future<List<Object>> f = pool.submit(c);
+//                list.add(f);
+//                t++;
+//            }
+//            // 关闭线程池
+//            pool.shutdown();
+//        }
+
+
+
+
         System.out.println("----程序结束运行----，程序运行时间【" + (System.currentTimeMillis() - startTime) + "毫秒】");
 
+        /********* 把获取到的数据组装并返回出去 *********/
+        List returnList = new ArrayList();
         // 获取所有并发任务的运行结果
         for (Future<List<Object>> f : list) {
-            // 从Future对象上获取任务的返回值，并输出到控制台
+            // 从Future对象上获取任务的返回值
             Object obj = f.get();
             if (obj != null) {
-                if (obj instanceof Boolean) {
-                    System.out.println("返回的结果：" + obj);
-                } else if (obj instanceof List) {
-                    List<Object> subList = (List<Object>) obj;
-                    for (Object s : subList) {
-                        System.out.println("返回的结果：" + s);
-                    }
-                }
+                returnList.addAll((Collection) obj);
             }
         }
-        System.out.println("list.size():::" + list.size());
+
+        return returnList;
     }
 
     /**
-     * 计算数据页数
+     * 计算数据页数（批数量）
+     *
      * @param dataSum
      * @param pageSize
+     *
      * @return
      */
-    private static Long countBatchNum(Long dataSum, int pageSize) {
+    private static Long countBatchNum(Long dataSum, Long pageSize) {
         Long page = 0L;
         if ((dataSum % pageSize) > 0) {
             page = (dataSum / pageSize) + 1;
