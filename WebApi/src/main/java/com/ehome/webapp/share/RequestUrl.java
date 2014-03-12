@@ -1,4 +1,4 @@
-package com.xiaolei.webapp.share;
+package com.ehome.webapp.share;
 
 public class RequestUrl {
     public static final String LOGIN = "/login";

@@ -1,6 +1,6 @@
-package com.xiaolei.webapp.servlet;
+package com.ehome.webapp.servlet;
 
-import com.xiaolei.webapp.interceptor.ChechPermissionInterceptor;
+import com.ehome.webapp.interceptor.ChechPermissionInterceptor;
 
 import java.io.IOException;
 import java.io.Serializable;

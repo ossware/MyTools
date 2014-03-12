@@ -1,4 +1,4 @@
-package com.xiaolei.webapp.interceptor;
+package com.ehome.webapp.interceptor;
 
 import net.sf.cglib.proxy.MethodProxy;
 

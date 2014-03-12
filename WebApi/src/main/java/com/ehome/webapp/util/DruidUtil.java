@@ -1,4 +1,4 @@
-package com.xiaolei.webapp.util;
+package com.ehome.webapp.util;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.DruidDataSourceFactory;

@@ -7,7 +7,7 @@
  * @date 2014年3月8日 下午3:28:11
  * @version V1.0  
  */ 
-package com.xiaolei.webapp.bean;
+package com.ehome.webapp.bean;
 
 import java.io.Serializable;
 

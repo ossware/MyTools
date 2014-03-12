@@ -1,4 +1,4 @@
-package com.xiaolei.webapp.listener;
+package com.ehome.webapp.listener;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -9,8 +9,8 @@ import java.util.Set;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import com.xiaolei.webapp.share.ApiPath;
-import com.xiaolei.webapp.util.ClassUtil;
+import com.ehome.webapp.share.ApiPath;
+import com.ehome.webapp.util.ClassUtil;
 
 public class InitApiListener implements ServletContextListener {
 	private static final long serialVersionUID = -8498741507271850476L;

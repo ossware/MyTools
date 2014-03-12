@@ -1,4 +1,4 @@
-package com.xiaolei.webapp.biz;
+package com.ehome.webapp.biz;
 
 /**
  * Created with IntelliJ IDEA.

@@ -1,6 +1,6 @@
-package com.xiaolei.webapp.listener;
+package com.ehome.webapp.listener;
 
-import com.xiaolei.webapp.hook.ShutdownHook;
+import com.ehome.webapp.hook.ShutdownHook;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

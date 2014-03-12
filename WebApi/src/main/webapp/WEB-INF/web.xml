@@ -7,7 +7,7 @@
 
     <servlet>
         <servlet-name>WebApiServlet</servlet-name>
-        <servlet-class>com.xiaolei.webapp.servlet.WebApiServlet</servlet-class>
+        <servlet-class>com.ehome.webapp.servlet.WebApiServlet</servlet-class>
         <init-param>
             <param-name>permission</param-name>
             <param-value>true</param-value>
@@ -32,13 +32,13 @@
     </context-param>
     <listener>
         <display-name>初始化API到Application</display-name>
-        <listener-class>com.xiaolei.webapp.listener.InitApiListener</listener-class>
+        <listener-class>com.ehome.webapp.listener.InitApiListener</listener-class>
     </listener>
     <!-- context-param和listener配合使用来初始化所有Api 结束 -->
 
     <!-- 容器关闭时候监听 开始 -->
     <listener>
-        <listener-class>com.xiaolei.webapp.listener.ShutdownListener</listener-class>
+        <listener-class>com.ehome.webapp.listener.ShutdownListener</listener-class>
     </listener>
     <!-- 容器关闭时候监听 结束 -->
 
@@ -46,7 +46,7 @@
     <filter>
         <description>字符编码过滤器</description>
         <filter-name>SetCharacterEncodingFilter</filter-name>
-        <filter-class>com.xiaolei.webapp.filter.SetCharacterEncodingFilter</filter-class>
+        <filter-class>com.ehome.webapp.filter.SetCharacterEncodingFilter</filter-class>
         <init-param>
             <description>要转成的字符编码</description>
             <param-name>encoding</param-name>

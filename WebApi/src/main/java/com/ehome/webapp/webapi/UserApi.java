@@ -1,4 +1,4 @@
-package com.xiaolei.webapp.webapi;
+package com.ehome.webapp.webapi;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,11 +8,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
-import com.xiaolei.webapp.biz.UserBiz;
-import com.xiaolei.webapp.interceptor.SaveDataInterceptor;
-import com.xiaolei.webapp.share.ApiPath;
-import com.xiaolei.webapp.share.RequestUrl;
-import com.xiaolei.webapp.util.JsonUtil;
+import com.ehome.webapp.biz.UserBiz;
+import com.ehome.webapp.interceptor.SaveDataInterceptor;
+import com.ehome.webapp.share.ApiPath;
+import com.ehome.webapp.share.RequestUrl;
 
 public class UserApi {
     private SaveDataInterceptor saveDataInterceptor = new SaveDataInterceptor();
@@ -36,7 +35,7 @@ public class UserApi {
         UserBiz userBiz = (UserBiz) saveDataInterceptor.getInstance(new UserBiz());
         userBiz.addUser();
 
-		return JsonUtil.string2json("我是返回值");
+		return "我是返回值";
 	}
 
 	@ApiPath(RequestUrl.USER_DELETE_USER)

@@ -1,17 +1,7 @@
-/**----------------------------------------------------------------
- // Copyright (C) 2014 北京品众互动网络营销技术有限公司版权所有。
- // @project: MyTools
- // @package: com.iunet.test
- // @className: LoginApiTest
- //
- // @author: haoxiaolei
- // @date： 14-3-8 下午5:23
- // @version: v1.0
- //----------------------------------------------------------------*/
 package com.iunet.test.webapi;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xiaolei.webapp.share.RequestUrl;
+import com.ehome.webapp.share.RequestUrl;
 import jodd.http.HttpRequest;
 import jodd.http.HttpResponse;
 import org.junit.Before;

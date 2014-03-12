@@ -7,7 +7,7 @@
  * @date 2014年3月8日 上午11:24:21
  * @version V1.0  
  */ 
-package com.xiaolei.webapp.webapi;
+package com.ehome.webapp.webapi;
 
 import jodd.util.StringUtil;
 

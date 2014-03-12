@@ -1,8 +1,8 @@
-package com.xiaolei.webapp.webapi;
+package com.ehome.webapp.webapi;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xiaolei.webapp.share.ApiPath;
-import com.xiaolei.webapp.share.RequestUrl;
+import com.ehome.webapp.share.ApiPath;
+import com.ehome.webapp.share.RequestUrl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
