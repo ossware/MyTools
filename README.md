@@ -1,8 +1,8 @@
 MyTools
 =======
 一些工具类，和实验性东西
-#Apache-DBUtils：DBUtils的使用
-#CheckCode：验证码的使用
+###Apache-DBUtils：DBUtils的使用
+###CheckCode：验证码的使用
 ConcurentProcessor：并发处理
 Druid：数据库连接池
 Echcache：缓存组件
