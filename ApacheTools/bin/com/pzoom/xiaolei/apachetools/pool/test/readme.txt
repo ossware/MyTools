@@ -1,3 +1,0 @@
-Apache Common Pool包括很多已经实现的Pool，常用的Pool有GenericObjectPool，GenericKeyedObjectPool。
-本文主要讲述如何使用以上两种Pool，其它的用法相似。
-使用Common Pool需求到Apache网站下载commons-pool.jar和commons-collections.jar两个包。

@@ -1,4 +1,4 @@
-package com.pzoom.xiaolei.apachetools.dbutils.beans;
+package com.ehome.dbutils.bean;
 
 public class NewsBean {
 	private Long id;
