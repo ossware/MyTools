@@ -21,13 +21,10 @@ public class BaseApi {
 	 * @Description: 获取页面参数，并转成json对象
 	 * @author xiaolei-0228@163.com
 	 * @param @param jsonData
-	 * @param @return
 	 * @return JSONObject    返回类型
-	 * @throws @param jsonData
-	 * @throws
 	 */
 	public JSONObject getParamsObj(String jsonData) {
-		if (StringUtil.isNotBlank(jsonData)) {
+		if (jsonData != null && StringUtil.isNotBlank(jsonData)) {
 			JSONObject jsonDataObj = JSONObject.parseObject(jsonData);
 			return jsonDataObj.getJSONObject("params");
 		} else {
@@ -40,13 +37,10 @@ public class BaseApi {
 	 * @Description: 获取页面参数，并转成json数组
 	 * @author xiaolei-0228@163.com
 	 * @param @param jsonData
-	 * @param @return
 	 * @return JSONArray    返回类型
-	 * @throws @param jsonData
-	 * @throws
 	 */
 	public JSONArray getParamsArray(String jsonData) {
-		if (StringUtil.isNotBlank(jsonData)) {
+		if (jsonData != null && StringUtil.isNotBlank(jsonData)) {
 			JSONObject jsonDataObj = JSONObject.parseObject(jsonData);
 			return jsonDataObj.getJSONArray("params");
 		} else {
