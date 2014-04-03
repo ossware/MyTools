@@ -13,4 +13,9 @@ public class LoginServiceImpl {
     public void addLoginLogs() {
         System.out.println("添加登录日志信息 addLoginLogs()...");
     }
+
+    public void deleteLoginLogs() {
+        System.out.println("删除登录日志信息 deleteLoginLogs()...");
+    }
+
 }
