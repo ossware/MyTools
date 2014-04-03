@@ -1,20 +1,21 @@
-package com.iunet.cglib_proxy.proxy;
+package com.ehome.webapp.interceptor;
 
 import net.sf.cglib.proxy.Enhancer;
-import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.Method;
 
 /**
- * Created with IntelliJ IDEA.
- * User: haoxiaolei
- * Date: 13-7-4
- * Time: 下午6:21
- * To change this template use File | Settings | File Templates.
- * 使用cglib 动态代理
+ * @version V1.0
+ * @Project: VWPS
+ * @Title:
+ * @Package com.ds.vwps.interceptor
+ * @Description: 给某个类的某个方法切入拦截方法的引擎
+ * @Author xiaolei-0228@163.com
+ * @Date 2014-04-03 0003 12:30
+ * @Copyright: 2014 ihome.com
  */
-public class CheckPermissionProxy implements MethodInterceptor {
+public class InterceptorEngine extends BaseInterceptor {
     private Object target;              // 被切入体，即目标对象
     private Object cutObj;              // 切入体
     private Method cutObjMethod;       // 切入体的某个方法
@@ -69,16 +70,10 @@ public class CheckPermissionProxy implements MethodInterceptor {
      * @throws Throwable
      */
     public Object intercept(Object obj, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
-//        checkPermission();
         if (cutObj != null && cutObjMethod != null) {
             cutObjMethod.invoke(cutObj, cutObjMethodArgs);
         }
         return methodProxy.invokeSuper(obj, args);
     }
-
-    private void checkPermission() {
-        System.out.println("验证权限...在XXXX操作之前执行!");
-    }
-
 
 }
