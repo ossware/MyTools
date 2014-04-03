@@ -43,8 +43,7 @@ public class CheckPermissionProxy implements MethodInterceptor {
      */
     public Object intercept(Object obj, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
         checkPermission();
-        methodProxy.invokeSuper(obj, args);
-        return null;
+        return methodProxy.invokeSuper(obj, args);
     }
 
     private void checkPermission() {

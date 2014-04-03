@@ -42,7 +42,11 @@ public class WebApiServlet extends HttpServlet implements Serializable {
         }
 
         // 获取并解析页面传过来的json数据
-        String formDate = request.getParameterMap().keySet().iterator().next();
+        String formDate = null;
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        if (parameterMap != null && parameterMap.size() > 0) {
+            formDate = parameterMap.keySet().iterator().next();
+        }
 
         // 从apiMaps里拿到要执行的方法并运行
         Method m = apiMaps.get(apiPath);
