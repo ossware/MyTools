@@ -1,7 +1,5 @@
 package com.ehome.webapp.servlet;
 
-import com.ehome.webapp.interceptor.ChechPermissionInterceptor;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
@@ -55,12 +53,12 @@ public class WebApiServlet extends HttpServlet implements Serializable {
                 Object obj = m.getDeclaringClass().newInstance();
 
                 // 加入权限校验(所有请求的方法都会被此拦截器拦截到)
-                if (permission != null && permission.equals("true")) {
-                    if (!obj.getClass().getName().equals(excludePermissionApi)) {   // 如果不是被排除的Api就执行代理
-                        ChechPermissionInterceptor interceptor = new ChechPermissionInterceptor();
-                        obj = interceptor.getInstance(obj);
-                    }
-                }
+//                if (permission != null && permission.equals("true")) {
+//                    if (!obj.getClass().getName().equals(excludePermissionApi)) {   // 如果不是被排除的Api就执行代理
+//                        ChechPermissionInterceptor interceptor = new ChechPermissionInterceptor();
+//                        obj = interceptor.getInstance(obj);
+//                    }
+//                }
 
                 Object result = m.invoke(obj, request, formDate);
                 response.getWriter().println(result != null ? result.toString() : "");	//返回给页面数据
