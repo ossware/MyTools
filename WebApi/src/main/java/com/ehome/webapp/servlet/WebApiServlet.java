@@ -1,6 +1,7 @@
 package com.ehome.webapp.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -49,6 +50,7 @@ public class WebApiServlet extends HttpServlet implements Serializable {
         // 从apiMaps里拿到要执行的方法并运行
         Method m = apiMaps.get(apiPath);
         if (m != null) {
+            PrintWriter pw = null;
             try {
                 Object obj = m.getDeclaringClass().newInstance();
 
@@ -61,7 +63,8 @@ public class WebApiServlet extends HttpServlet implements Serializable {
 //                }
 
                 Object result = m.invoke(obj, request, formDate);
-                response.getWriter().println(result != null ? result.toString() : "");	//返回给页面数据
+                pw = response.getWriter();
+                pw.println(result != null ? result.toString() : "");	//返回给页面数据
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
@@ -70,6 +73,8 @@ public class WebApiServlet extends HttpServlet implements Serializable {
                 e.printStackTrace();
             } catch (InstantiationException e) {
                 e.printStackTrace();
+            } finally {
+                if (pw != null) pw.close();
             }
         }
     }
