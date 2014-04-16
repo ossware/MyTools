@@ -46,6 +46,7 @@ public class Paging implements Serializable {
 		this.totalRecords = totalRecords;
 	}
 	public long getTotalPages() {
+        totalPages = (totalRecords % pageSize > 0) ? ((totalRecords/pageSize) + 1) : totalRecords/pageSize;
 		return totalPages;
 	}
 	public void setTotalPages(long totalPages) {
