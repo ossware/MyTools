@@ -28,7 +28,8 @@ public class Paging implements Serializable {
 		this.currentRecord = currentRecord;
 	}
 	public int getCurrentPage() {
-		return currentPage;
+        currentPage = (currentRecord + pageSize) / pageSize;
+        return currentPage;
 	}
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
