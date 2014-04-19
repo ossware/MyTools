@@ -14,45 +14,43 @@ import java.io.Serializable;
 public class ResultDataBean implements Serializable {
 	private static final long serialVersionUID = 5933106683129425849L;
 	
-	private String error;		// 错误代码 （方便开发人员分析问题）
-	private String message;		// 错误提示信息 （向用户展示用）
+	private String errCode;    // 错误代码 （方便开发人员分析问题）
+	private String errMsg;		// 错误提示信息 （向用户展示用）
 	private Object result;		// 数据结果
 	
 	private Paging paging;		// 分页信息
 	
 	
 	/**********************************************************************************************/
-	public String getError() {
-		return error;
-	}
+    public String getErrCode() {
+        return errCode;
+    }
 
-	public void setError(String error) {
-		this.error = error;
-	}
+    public void setErrCode(String errCode) {
+        this.errCode = errCode;
+    }
 
-	public String getMessage() {
-		return message;
-	}
+    public String getErrMsg() {
+        return errMsg;
+    }
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    public void setErrMsg(String errMsg) {
+        this.errMsg = errMsg;
+    }
 
-	public Object getResult() {
-		return result;
-	}
+    public Object getResult() {
+        return result;
+    }
 
-	public void setResult(Object result) {
-		this.result = result;
-	}
+    public void setResult(Object result) {
+        this.result = result;
+    }
 
-	public Paging getPaging() {
-		return paging;
-	}
+    public Paging getPaging() {
+        return paging;
+    }
 
-	public void setPaging(Paging paging) {
-		this.paging = paging;
-	}
-	
-	
+    public void setPaging(Paging paging) {
+        this.paging = paging;
+    }
 }
