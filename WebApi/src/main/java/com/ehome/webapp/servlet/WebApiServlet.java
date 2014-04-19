@@ -29,7 +29,6 @@ public class WebApiServlet extends HttpServlet implements Serializable {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("请求的api：" + request.getRequestURI());
         apiMaps = (Map<String, Method>) request.getServletContext().getAttribute("apiMaps");
         String apiPath = request.getRequestURI();
         if(apiPath == null || "".equals(apiPath) || "null".equals(apiPath)) {
