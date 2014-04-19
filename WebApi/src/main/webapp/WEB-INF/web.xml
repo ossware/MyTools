@@ -15,7 +15,7 @@
         <init-param>
             <param-name>excludePermissionApi</param-name>
             <!-- 排除权限校验的Api -->
-            <param-value>com.xiaolei.webapp.webapi.LoginApi</param-value>
+            <param-value>com.ehome.webapp.webapi.LoginApi</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
@@ -27,12 +27,16 @@
     <context-param>
         <description>webapi class path</description>
         <param-name>apipath</param-name>
-        <param-value>com.xiaolei.webapp.webapi</param-value>
-        <!-- 指定api所的package,多个用逗号(,)隔开 -->
+        <param-value>com.ehome.webapp.webapi</param-value><!-- 指定api所的package,多个用逗号(,)隔开 -->
+    </context-param>
+    <context-param>
+        <description>系统启动时要运行的类</description>
+        <param-name>startRunMethodPath</param-name>
+        <param-value>com.ehome.webapp.init</param-value><!-- 指定系统启动时要运行的类的package,多个用逗号(,)隔开 -->
     </context-param>
     <listener>
         <display-name>初始化API到Application</display-name>
-        <listener-class>com.ehome.webapp.listener.InitApiListener</listener-class>
+        <listener-class>com.ehome.webapp.listener.StartInitListener</listener-class>
     </listener>
     <!-- context-param和listener配合使用来初始化所有Api 结束 -->
 
