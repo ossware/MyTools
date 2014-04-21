@@ -6,6 +6,7 @@ import com.alibaba.druid.pool.DruidDataSourceFactory;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -61,11 +62,18 @@ public class DruidUtil {
         }
     }
 
-    public static void closeAll(Connection conn, PreparedStatement ps) {
+    public static void closeAll(Connection conn, PreparedStatement ps, ResultSet rs) {
         closeConn(conn);
         if (ps != null) {
             try {
                 ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (rs != null) {
+            try {
+                rs.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
