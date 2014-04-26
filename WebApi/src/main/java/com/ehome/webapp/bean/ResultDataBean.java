@@ -23,7 +23,7 @@ public class ResultDataBean implements Serializable {
 	
 	/**********************************************************************************************/
     public String getErrCode() {
-        return errCode == null ? "null" : errCode;
+        return errCode == null ? "" : errCode;
     }
 
     public void setErrCode(String errCode) {
@@ -31,7 +31,7 @@ public class ResultDataBean implements Serializable {
     }
 
     public String getErrMsg() {
-        return errMsg == null ? "null" : errMsg;
+        return errMsg == null ? "" : errMsg;
     }
 
     public void setErrMsg(String errMsg) {
@@ -39,7 +39,7 @@ public class ResultDataBean implements Serializable {
     }
 
     public Object getResult() {
-        return result == null ? "null" : result;
+        return result == null ? "" : result;
     }
 
     public void setResult(Object result) {
