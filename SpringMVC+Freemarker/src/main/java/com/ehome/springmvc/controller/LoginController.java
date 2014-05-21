@@ -3,6 +3,7 @@ package com.ehome.springmvc.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @version V1.0
@@ -24,9 +25,10 @@ public class LoginController {
     }
 
     @RequestMapping("/hello")
-    public String hello() {
+    public void hello() {
         System.out.println("hello()...");
-        return "";
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("result", "hello");
     }
 
 }
