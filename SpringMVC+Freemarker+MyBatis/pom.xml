@@ -50,6 +50,11 @@
             <artifactId>spring-jdbc</artifactId>
             <version>${springframework-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${springframework-version}</version>
+        </dependency>
         <!-- ] Spring -end -->
         <!-- SpringMVC -start [ -->
         <dependency>
@@ -63,6 +68,11 @@
             <version>${springframework-version}</version>
         </dependency>
         <!-- ] SpringMVC -end -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>1.2.2</version>
+        </dependency>
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
