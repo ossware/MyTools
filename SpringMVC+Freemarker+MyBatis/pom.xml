@@ -39,12 +39,19 @@
             <scope>provided</scope>
         </dependency>
         <!-- ] Tomcat -end -->
-        <!-- SpringMVC -start [ -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+        <!-- Spring -start [ -->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
+            <artifactId>spring-jdbc</artifactId>
             <version>${springframework-version}</version>
         </dependency>
+        <!-- ] Spring -end -->
+        <!-- SpringMVC -start [ -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
