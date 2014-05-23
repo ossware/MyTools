@@ -14,9 +14,6 @@
     <context:annotation-config />
     <mvc:annotation-driven/>
 
-    <import resource="applicationContext-servlet.xml"/>
-    <!--<import resource="applicationContext-biz.xml"/>-->
-
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!-- 基本属性 url、user、password -->
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
@@ -52,8 +49,6 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-
-    <!--<bean id="baseDAO" class="com.ehome.springmvc.dao.BaseDAO"/>-->
 
     <!-- 配置freeMarker的模板路径 -->
     <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
