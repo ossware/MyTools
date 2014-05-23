@@ -1,15 +1,17 @@
 package com.ehome.springmvc.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.ehome.springmvc.biz.UserBiz;
 import com.ehome.springmvc.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UrlPathHelper;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,15 +34,8 @@ public class UserController {
         this.userBiz = userBiz;
     }
 
-    @RequestMapping("/home")
-    public String home(Model model) {
-        System.out.println("进入SpringMVC Controller...");
-        model.addAttribute("message", "hello, world");
-        return "home";
-    }
-
-    @RequestMapping("/addUser")
-    public String addUser(HttpServletRequest request, HttpServletResponse response, Object handler, Model m) {
+    @RequestMapping("/hello")
+    public String home(HttpServletRequest request, HttpServletResponse response, Object handler, Model m) {
         System.out.println("hello()...");
         m.addAttribute("user", "单车上的理想");
         String requestUri = new UrlPathHelper().getLookupPathForRequest(request);
@@ -52,13 +47,22 @@ public class UserController {
         map.put("key", "map的值...");
         m.addAttribute("map", map);
 
+        return "hello";
+    }
+
+    @RequestMapping("/addUser")
+    @ResponseBody
+    public void addUser(PrintWriter pw) {
         User user = new User();
         user.setUserName("单车上的理想");
         user.setUserAge(28);
         user.setUserAddress("郑州市");
-        userBiz.addNewUser(user);
+//        boolean result = userBiz.addNewUser(user);
 
-        return "hello";
+//        pw.write(JSON.toJSONString(result));
+        pw.write(JSON.toJSONString(user));
+        pw.flush();
+        pw.close();
     }
 
 }
