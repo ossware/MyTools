@@ -16,6 +16,7 @@ import javax.annotation.Resource;
  * @Date 2014/5/23 0023 11:53
  * @Copyright: 2014 ihome.com
  */
+@Component("baseDAO")
 public class BaseDAO {
 
     private SqlSessionFactory sqlSessionFactory;

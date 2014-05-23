@@ -19,6 +19,7 @@ import javax.annotation.Resource;
  * @Date 2014/5/23 0023 14:37
  * @Copyright: 2014 ihome.com
  */
+@Component("userBiz")
 public class UserBizImpl implements UserBiz {
     private BaseDAO baseDAO;
 

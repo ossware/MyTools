@@ -54,8 +54,6 @@
             <artifactId>spring-orm</artifactId>
             <version>${springframework-version}</version>
         </dependency>
-        <!-- ] Spring -end -->
-        <!-- SpringMVC -start [ -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
@@ -66,7 +64,7 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${springframework-version}</version>
         </dependency>
-        <!-- ] SpringMVC -end -->
+        <!-- ] Spring -end -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
