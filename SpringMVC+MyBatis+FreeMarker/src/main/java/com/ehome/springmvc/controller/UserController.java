@@ -6,7 +6,6 @@ import com.ehome.springmvc.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UrlPathHelper;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -51,7 +50,6 @@ public class UserController {
     }
 
     @RequestMapping("/addUser")
-    @ResponseBody
     public void addUser(PrintWriter pw) {
         User user = new User();
         user.setUserName("单车上的理想");
@@ -59,7 +57,7 @@ public class UserController {
         user.setUserAddress("郑州市");
         boolean result = userBiz.addNewUser(user);
 
-        pw.write(JSON.toJSONString(result));
+        pw.write(JSON.toJSONString(user));
         pw.flush();
         pw.close();
     }
