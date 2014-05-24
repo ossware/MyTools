@@ -52,7 +52,7 @@ public class UserController {
 
     @RequestMapping("/addUser")
     @ResponseBody
-    public void addUser(PrintWriter pw) {
+    public void addUser(PrintWriter pw, HttpServletResponse response) {
         User user = new User();
         user.setUserName("单车上的理想");
         user.setUserAge(28);

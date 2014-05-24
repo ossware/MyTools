@@ -25,4 +25,19 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <!-- 字符编码Filter 开始 -->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>com.ehome.springmvc.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+    <!-- 字符编码Filter 结束 -->
+
 </web-app>
