@@ -52,15 +52,14 @@ public class UserController {
 
     @RequestMapping("/addUser")
     @ResponseBody
-    public void addUser(PrintWriter pw, HttpServletResponse response) {
+    public void addUser(PrintWriter pw) {
         User user = new User();
         user.setUserName("单车上的理想");
         user.setUserAge(28);
         user.setUserAddress("郑州市");
-//        boolean result = userBiz.addNewUser(user);
+        boolean result = userBiz.addNewUser(user);
 
-//        pw.write(JSON.toJSONString(result));
-        pw.write(JSON.toJSONString(user));
+        pw.write(JSON.toJSONString(result));
         pw.flush();
         pw.close();
     }
