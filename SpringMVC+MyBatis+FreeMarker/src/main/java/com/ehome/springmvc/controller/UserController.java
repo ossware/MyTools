@@ -57,7 +57,7 @@ public class UserController {
         user.setUserAddress("郑州市");
         boolean result = userBiz.addNewUser(user);
 
-        pw.write(JSON.toJSONString(user));
+        pw.write(JSON.toJSONString(result));
         pw.flush();
         pw.close();
     }
