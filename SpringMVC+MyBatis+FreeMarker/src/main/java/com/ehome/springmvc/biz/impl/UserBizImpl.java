@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @version V1.0
@@ -40,12 +42,26 @@ public class UserBizImpl implements UserBiz {
             addResult = userDAO.addNewUser(user);
             if (addResult) {
                 session.commit();
-                System.out.println(addResult);
             }
         } finally {
             session.close();
         }
 
         return addResult;
+    }
+
+    public List<User> getAllUsers() {
+        List<User> userList = new ArrayList<User>();
+        SqlSession session = baseDAO.getSession();
+        if (!session.getConfiguration().hasMapper(UserDAO.class)) {
+            session.getConfiguration().addMapper(UserDAO.class);
+        }
+        try {
+            UserDAO userDAO = session.getMapper(UserDAO.class);
+            userList = userDAO.getAllUsers();
+        } finally {
+            session.close();
+        }
+        return userList;
     }
 }

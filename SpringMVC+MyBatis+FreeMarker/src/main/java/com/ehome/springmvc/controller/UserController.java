@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -58,6 +59,14 @@ public class UserController {
         boolean result = userBiz.addNewUser(user);
 
         pw.write(JSON.toJSONString(result));
+        pw.flush();
+        pw.close();
+    }
+
+    @RequestMapping("/getAllUsers")
+    public void getAllUsers(PrintWriter pw) {
+        List<User> userList = userBiz.getAllUsers();
+        pw.write(JSON.toJSONString(userList));
         pw.flush();
         pw.close();
     }

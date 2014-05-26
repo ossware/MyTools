@@ -27,4 +27,16 @@ public class UserTest extends BaseWebRequestTest {
         HttpResponse response = HttpRequest.post(url).send();
         System.out.println("返回的数据：" + response.bodyText());
     }
+
+    @Test
+    public void getAllUsers() {
+        url += "/getAllUsers";
+        HttpResponse response = HttpRequest.post(url).send();
+        System.out.println("返回的数据：" + response.bodyText());
+    }
+
+
+
+
+
 }
