@@ -26,6 +26,10 @@ public class BaseDAO {
         this.sqlSessionFactory = sqlSessionFactory;
     }
 
+    public SqlSessionFactory getSqlSessionFactory() {
+        return sqlSessionFactory;
+    }
+
     public SqlSession getSession() {
         return sqlSessionFactory.openSession();
     }

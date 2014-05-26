@@ -35,6 +35,12 @@ public class UserTest extends BaseWebRequestTest {
         System.out.println("返回的数据：" + response.bodyText());
     }
 
+    @Test
+    public void addBlogs() {
+        url += "/addBlogs";
+        HttpResponse response = HttpRequest.post(url).send();
+        System.out.println("返回的数据：" + response.bodyText());
+    }
 
 
 

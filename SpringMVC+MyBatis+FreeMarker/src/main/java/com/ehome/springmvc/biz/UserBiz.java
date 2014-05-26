@@ -1,5 +1,6 @@
 package com.ehome.springmvc.biz;
 
+import com.ehome.springmvc.model.Blog;
 import com.ehome.springmvc.model.User;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface UserBiz {
     public boolean addNewUser(User user);
 
     public List<User> getAllUsers();
+
+    boolean addBlogs(User user, Blog blog);
 }

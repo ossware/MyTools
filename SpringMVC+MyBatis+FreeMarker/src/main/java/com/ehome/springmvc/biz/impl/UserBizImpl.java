@@ -2,11 +2,14 @@ package com.ehome.springmvc.biz.impl;
 
 import com.ehome.springmvc.biz.UserBiz;
 import com.ehome.springmvc.dao.BaseDAO;
+import com.ehome.springmvc.dao.BlogDAO;
 import com.ehome.springmvc.dao.UserDAO;
+import com.ehome.springmvc.model.Blog;
 import com.ehome.springmvc.model.User;
+import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
-
+import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,4 +67,34 @@ public class UserBizImpl implements UserBiz {
         }
         return userList;
     }
+
+    @Transactional(rollbackFor = Exception.class)
+    public boolean addBlogs(User user, Blog blog) {
+        boolean result = false;
+        SqlSession session = baseDAO.getSession();
+        Configuration cfg = session.getConfiguration();
+        if (!cfg.hasMapper(UserDAO.class)) {
+            cfg.addMapper(UserDAO.class);
+        }
+        if (!cfg.hasMapper(BlogDAO.class)) {
+            cfg.addMapper(BlogDAO.class);
+        }
+        try {
+            UserDAO userDAO = session.getMapper(UserDAO.class);
+            boolean addUserResult = userDAO.addNewUser(user);
+            BlogDAO blogDAO = session.getMapper(BlogDAO.class);
+            boolean addBlogResult = blogDAO.addBlog(blog);
+            addUserResult = false;
+            if (!addUserResult || !addBlogResult) {
+                throw new RuntimeException("保存失败...");
+            } else {
+                result = true;
+            }
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+
 }

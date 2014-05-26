@@ -2,6 +2,7 @@ package com.ehome.springmvc.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.ehome.springmvc.biz.UserBiz;
+import com.ehome.springmvc.model.Blog;
 import com.ehome.springmvc.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -70,5 +71,22 @@ public class UserController {
         pw.flush();
         pw.close();
     }
+
+    @RequestMapping("/addBlogs")
+    public void addBlogs(PrintWriter pw) {
+        User user = new User();
+        user.setUserName("单车上的理想");
+        user.setUserAge(28);
+        user.setUserAddress("郑州市");
+        Blog blog = new Blog();
+        blog.setTitle("标题...");
+        blog.setAuthername("admin");
+        blog.setContent("第一次发贴...");
+        boolean addResult = userBiz.addBlogs(user, blog);
+        pw.write(JSON.toJSONString(addResult));
+        pw.flush();
+        pw.close();
+    }
+
 
 }
