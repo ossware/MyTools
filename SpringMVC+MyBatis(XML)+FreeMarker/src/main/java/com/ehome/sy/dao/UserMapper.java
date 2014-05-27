@@ -1,11 +1,9 @@
 package com.ehome.sy.dao;
 
 import com.ehome.sy.model.User;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component("userMapper")
 public interface UserMapper {
 	int deleteByPrimaryKey(String id);
 
