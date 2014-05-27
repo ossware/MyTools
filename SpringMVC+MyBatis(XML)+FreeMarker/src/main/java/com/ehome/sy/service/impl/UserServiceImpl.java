@@ -4,11 +4,10 @@ import com.ehome.sy.dao.UserMapper;
 import com.ehome.sy.model.User;
 import com.ehome.sy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import org.springframework.stereotype.Component;
 import java.util.List;
 
-@Service("userService")
+@Component("userService")
 public class UserServiceImpl implements UserService {
 
 	private UserMapper userMapper;
