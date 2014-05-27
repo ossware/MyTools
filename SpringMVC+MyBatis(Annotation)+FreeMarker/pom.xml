@@ -38,11 +38,6 @@
             <scope>provided</scope>
         </dependency>
         <!-- ] Tomcat -end -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>1.0.5</version>
-        </dependency>
         <!-- Spring -start [ -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -84,6 +79,11 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.30</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.5</version>
         </dependency>
         <!-- Mybatis -start [ -->
         <dependency>
