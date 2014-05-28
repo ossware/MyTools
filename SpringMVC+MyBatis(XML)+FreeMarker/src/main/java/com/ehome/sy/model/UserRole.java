@@ -1,21 +1,11 @@
 package com.ehome.sy.model;
 
 public class UserRole {
-	private Role role;
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
 
 	private String id;
-
 	private String roleId;
-
 	private String userId;
+	private Role role;
 
 	public String getId() {
 		return id;
@@ -40,4 +30,12 @@ public class UserRole {
 	public void setUserId(String userId) {
 		this.userId = userId == null ? null : userId.trim();
 	}
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }
